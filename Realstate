@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>مكتب النيل العقاري | أحدث العروض</title>
+  <meta name="description" content="عروض عقارية متجددة يومياً للبيع والإيجار في السودان" />
+
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700;900&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+
+<body>
+
+  <header class="site-header">
+    <div class="container header-inner">
+      <h1 class="logo">مكتب النيل العقاري</h1>
+      <nav class="nav">
+        <a href="#properties">العقارات المعروضة</a>
+        <a href="#contact">تواصل معنا</a>
+      </nav>
+    </div>
+  </header>
+
+  <section class="hero">
+    <div class="container">
+      <h2>عقارات مميزة في الخرطوم وكل الولايات</h2>
+      <p>تصفح أحدث المنازل والشقق والأراضي المعروضة حالياً</p>
+      <a href="#properties" class="btn-primary">استعرض العروض</a>
+    </div>
+  </section>
+
+  <section id="properties" class="section">
+    <div class="container">
+      <h2 class="section-title">العروض المتوفرة حالياً</h2>
+
+      <!-- هنا سيقوم الكود الذكي بعرض العقارات تلقائياً -->
+      <div id="properties-container" class="properties-grid">
+        <p style="text-align:center; width:100%; font-size:18px;">جاري تحميل أحدث العروض العقارية...</p>
+      </div>
+
+    </div>
+  </section>
+
+  <section id="contact" class="section contact-section">
+    <div class="container">
+      <h2 class="section-title">تواصل مع الإدارة</h2>
+      <p>هل تريد عرض عقارك معنا؟ تواصل مباشرة عبر واتساب</p>
+      <a href="https://wa.me/249123456789" class="btn-primary">مراسلة عبر واتساب</a>
+    </div>
+  </section>
+
+  <footer class="site-footer">
+    <div class="container">
+      <p>© 2026 مكتب النيل العقاري. جميع الحقوق محفوظة.</p>
+    </div>
+  </footer>
+
+  <!-- كود الجافاسكربت الذي يسحب الأسعار والصور من اللوحة -->
+  <script>
+    // استبدل هذا الرمز برمز مشروعك من موقع Sanity
+    const PROJECT_ID = "ضع_رمز_مشروعك_هنا";
+    const DATASET = "production";
+
+    // استعلام لجلب العقارات
+    const QUERY = encodeURIComponent('*[_type == "property"]{title, price, location, details, status, "imageUrl": image.asset->url, phone}');
+    const URL = `https://${PROJECT_ID}.api.sanity.io/v2021-10-21/data/query/${DATASET}?query=${QUERY}`;
+
+    async function loadProperties() {
+      const container = document.getElementById("properties-container");
+
+      try {
+        const response = await fetch(URL);
+        const data = await response.json();
+        const properties = data.result;
+
+        if (!properties || properties.length === 0) {
+          container.innerHTML = "<p style='text-align:center; width:100%;'>لا توجد عقارات معروضة حالياً.</p>";
+          return;
+        }
+
+        container.innerHTML = "";
+
+        properties.forEach(item => {
+          const card = document.createElement("article");
+          card.className = "property-card";
+
+          const imageSrc = item.imageUrl ? item.imageUrl : "https://via.placeholder.com/400x250?text=لا+توجد+صورة";
+          const isSold = item.status === "محجوز" ? "sold" : "";
+          const phone = item.phone || "249123456789";
+
+          card.innerHTML = `
+            <div class="property-image" style="background-image: url('${imageSrc}'); background-size: cover; background-position: center;">
+              <span class="badge ${isSold}">${item.status || "متاح"}</span>
+            </div>
+            <div class="property-body">
+              <h3>${item.title || "عقار بدون عنوان"}</h3>
+              <p class="location">${item.location || "الموقع غير محدد"}</p>
+              <p class="details">${item.details || ""}</p>
+              <div class="price-row">
+                <span class="price">${item.price || "اتصل لمعرفة السعر"}</span>
+                <a href="https://wa.me/${phone}?text=${encodeURIComponent('السلام عليكم، أستفسر عن: ' + item.title)}" class="btn-whatsapp" target="_blank">استفسار</a>
+              </div>
+            </div>
+          `;
+
+          container.appendChild(card);
+        });
+
+      } catch (error) {
+        console.error(error);
+        container.innerHTML = "<p style='text-align:center; width:100%; color:red;'>حدث خطأ أثناء تحميل البيانات.</p>";
+      }
+    }
+
+    loadProperties();
+  </script>
+
+</body>
+</html>
