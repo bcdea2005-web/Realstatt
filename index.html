@@ -3,491 +3,1035 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>النيل للعقارات | العروض العقارية المميزة في السودان</title>
-  <meta name="description" content="منصتك الأولى للبحث عن أفضل الشقق، المنازل، والفلل للبيع والإيجار في السودان" />
-
-  <!-- الخط العربي الرسمي والحديث -->
+  <title>العقارات | عروض حصرية</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;900&display=swap" rel="stylesheet">
-
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;800;900&display=swap" rel="stylesheet">
   <style>
     :root {
-      --primary: #0f4c81;
-      --primary-dark: #0a3258;
-      --accent: #2563eb;
-      --success: #16a34a;
-      --danger: #dc2626;
-      --bg: #f8fafc;
-      --card-bg: #ffffff;
-      --text-main: #0f172a;
-      --text-muted: #64748b;
-      --border: #e2e8f0;
-      --radius: 16px;
-      --shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
-      --shadow-hover: 0 20px 40px rgba(15, 76, 129, 0.15);
+      --gold: #c9a84c;
+      --gold-light: #e8d48b;
+      --dark: #0c1220;
+      --dark2: #131b2e;
+      --dark3: #1a2540;
+      --blue: #1e3a6e;
+      --white: #ffffff;
+      --gray: #94a3b8;
+      --light-bg: #f1f5f9;
+      --card-shadow: 0 20px 60px rgba(0,0,0,0.12);
+      --glow: 0 0 40px rgba(201,168,76,0.15);
     }
 
     * {
       box-sizing: border-box;
       margin: 0;
       padding: 0;
-      font-family: 'Cairo', sans-serif;
     }
+
+    html { scroll-behavior: smooth; }
 
     body {
-      background-color: var(--bg);
-      color: var(--text-main);
-      line-height: 1.6;
+      font-family: 'Cairo', sans-serif;
+      background: var(--light-bg);
+      color: var(--dark);
+      overflow-x: hidden;
     }
 
-    .container {
-      max-width: 1200px;
-      margin: 0 auto;
-      padding: 0 24px;
-    }
-
-    /* الشريط العلوي */
-    header {
-      background: rgba(255, 255, 255, 0.95);
-      backdrop-filter: blur(10px);
-      position: sticky;
+    /* ===== الشريط العلوي ===== */
+    .navbar {
+      position: fixed;
       top: 0;
-      z-index: 1000;
-      border-bottom: 1px solid var(--border);
+      width: 100%;
+      z-index: 9999;
+      padding: 18px 0;
+      transition: all 0.4s ease;
+      background: transparent;
     }
 
-    .nav-wrapper {
+    .navbar.scrolled {
+      background: rgba(12, 18, 32, 0.97);
+      backdrop-filter: blur(20px);
+      padding: 12px 0;
+      box-shadow: 0 4px 30px rgba(0,0,0,0.3);
+    }
+
+    .nav-inner {
+      max-width: 1300px;
+      margin: 0 auto;
+      padding: 0 30px;
       display: flex;
       justify-content: space-between;
       align-items: center;
-      padding: 18px 0;
     }
 
     .logo {
-      font-size: 24px;
+      font-size: 26px;
       font-weight: 900;
-      color: var(--primary);
+      color: var(--white);
+      text-decoration: none;
       display: flex;
       align-items: center;
-      gap: 8px;
-      text-decoration: none;
+      gap: 10px;
+    }
+
+    .logo-icon {
+      width: 42px;
+      height: 42px;
+      background: linear-gradient(135deg, var(--gold), var(--gold-light));
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 22px;
+      color: var(--dark);
     }
 
     .nav-links {
       display: flex;
-      gap: 20px;
+      gap: 30px;
+      align-items: center;
     }
 
     .nav-links a {
+      color: rgba(255,255,255,0.8);
       text-decoration: none;
-      color: var(--text-muted);
       font-weight: 600;
+      font-size: 15px;
       transition: color 0.3s;
-    }
-
-    .nav-links a:hover {
-      color: var(--primary);
-    }
-
-    /* واجهة الموقع الرئيسية */
-    .hero {
-      background: linear-gradient(135deg, var(--primary-dark) 0%, var(--primary) 50%, #1e3a8a 100%);
-      color: white;
-      padding: 90px 0 110px;
-      text-align: center;
       position: relative;
+    }
+
+    .nav-links a:hover { color: var(--gold); }
+
+    .nav-cta {
+      background: linear-gradient(135deg, var(--gold), var(--gold-light)) !important;
+      color: var(--dark) !important;
+      padding: 10px 24px;
+      border-radius: 50px;
+      font-weight: 800 !important;
+      transition: transform 0.3s, box-shadow 0.3s !important;
+    }
+
+    .nav-cta:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 25px rgba(201,168,76,0.4);
+    }
+
+    .menu-toggle {
+      display: none;
+      background: none;
+      border: none;
+      color: white;
+      font-size: 28px;
+      cursor: pointer;
+    }
+
+    /* ===== القسم الرئيسي (Hero) ===== */
+    .hero {
+      min-height: 100vh;
+      background: linear-gradient(160deg, var(--dark) 0%, var(--dark2) 40%, var(--blue) 100%);
+      display: flex;
+      align-items: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: -50%;
+      left: -50%;
+      width: 200%;
+      height: 200%;
+      background: radial-gradient(circle at 70% 30%, rgba(201,168,76,0.06) 0%, transparent 50%),
+                  radial-gradient(circle at 20% 80%, rgba(30,58,110,0.15) 0%, transparent 50%);
+      animation: float 20s ease-in-out infinite;
+    }
+
+    @keyframes float {
+      0%, 100% { transform: translate(0, 0) rotate(0deg); }
+      50% { transform: translate(-30px, 20px) rotate(2deg); }
+    }
+
+    .hero-content {
+      max-width: 1300px;
+      margin: 0 auto;
+      padding: 120px 30px 80px;
+      position: relative;
+      z-index: 2;
+      text-align: center;
+    }
+
+    .hero-badge {
+      display: inline-block;
+      background: rgba(201,168,76,0.15);
+      border: 1px solid rgba(201,168,76,0.3);
+      color: var(--gold);
+      padding: 8px 24px;
+      border-radius: 50px;
+      font-size: 14px;
+      font-weight: 700;
+      margin-bottom: 30px;
+      letter-spacing: 1px;
     }
 
     .hero h1 {
-      font-size: 42px;
+      font-size: 52px;
       font-weight: 900;
-      margin-bottom: 16px;
+      color: var(--white);
       line-height: 1.3;
+      margin-bottom: 20px;
     }
 
-    .hero p {
-      font-size: 18px;
-      opacity: 0.9;
+    .hero h1 span {
+      background: linear-gradient(135deg, var(--gold), var(--gold-light));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .hero-desc {
+      font-size: 19px;
+      color: var(--gray);
       max-width: 650px;
-      margin: 0 auto 30px;
+      margin: 0 auto 40px;
+      line-height: 1.8;
     }
 
-    .hero-btn {
-      display: inline-block;
-      background: var(--success);
-      color: white;
-      font-size: 18px;
-      font-weight: 700;
-      padding: 14px 36px;
+    .hero-buttons {
+      display: flex;
+      gap: 16px;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    .btn-gold {
+      background: linear-gradient(135deg, var(--gold), var(--gold-light));
+      color: var(--dark);
+      padding: 16px 40px;
       border-radius: 50px;
       text-decoration: none;
-      box-shadow: 0 8px 20px rgba(22, 163, 74, 0.4);
-      transition: transform 0.3s, background 0.3s;
+      font-weight: 800;
+      font-size: 17px;
+      transition: all 0.3s;
+      box-shadow: 0 8px 30px rgba(201,168,76,0.3);
     }
 
-    .hero-btn:hover {
+    .btn-gold:hover {
       transform: translateY(-3px);
-      background: #15803d;
+      box-shadow: 0 15px 40px rgba(201,168,76,0.5);
     }
 
-    /* قسم العقارات */
-    .section-title-wrap {
+    .btn-outline {
+      border: 2px solid rgba(255,255,255,0.2);
+      color: var(--white);
+      padding: 16px 40px;
+      border-radius: 50px;
+      text-decoration: none;
+      font-weight: 700;
+      font-size: 17px;
+      transition: all 0.3s;
+    }
+
+    .btn-outline:hover {
+      border-color: var(--gold);
+      color: var(--gold);
+      background: rgba(201,168,76,0.05);
+    }
+
+    .hero-stats {
+      display: flex;
+      justify-content: center;
+      gap: 60px;
+      margin-top: 70px;
+      flex-wrap: wrap;
+    }
+
+    .stat-item {
       text-align: center;
-      margin: 70px 0 40px;
+    }
+
+    .stat-number {
+      font-size: 40px;
+      font-weight: 900;
+      color: var(--gold);
+      display: block;
+    }
+
+    .stat-label {
+      color: var(--gray);
+      font-size: 14px;
+      font-weight: 600;
+    }
+
+    /* ===== شريط البحث ===== */
+    .search-bar {
+      max-width: 900px;
+      margin: -45px auto 0;
+      background: var(--white);
+      border-radius: 20px;
+      padding: 20px 30px;
+      box-shadow: var(--card-shadow);
+      display: flex;
+      gap: 15px;
+      align-items: center;
+      position: relative;
+      z-index: 10;
+      flex-wrap: wrap;
+    }
+
+    .search-bar select,
+    .search-bar input {
+      flex: 1;
+      min-width: 150px;
+      padding: 14px 18px;
+      border: 2px solid #e2e8f0;
+      border-radius: 12px;
+      font-family: 'Cairo', sans-serif;
+      font-size: 15px;
+      font-weight: 600;
+      color: var(--dark);
+      background: var(--light-bg);
+      outline: none;
+      transition: border-color 0.3s;
+    }
+
+    .search-bar select:focus,
+    .search-bar input:focus {
+      border-color: var(--gold);
+    }
+
+    .search-btn {
+      background: linear-gradient(135deg, var(--gold), var(--gold-light));
+      color: var(--dark);
+      border: none;
+      padding: 14px 30px;
+      border-radius: 12px;
+      font-family: 'Cairo', sans-serif;
+      font-size: 16px;
+      font-weight: 800;
+      cursor: pointer;
+      transition: transform 0.3s;
+    }
+
+    .search-btn:hover { transform: scale(1.05); }
+
+    /* ===== الأقسام العامة ===== */
+    .section {
+      padding: 90px 30px;
+      max-width: 1300px;
+      margin: 0 auto;
+    }
+
+    .section-header {
+      text-align: center;
+      margin-bottom: 60px;
+    }
+
+    .section-tag {
+      display: inline-block;
+      background: rgba(201,168,76,0.1);
+      color: var(--gold);
+      padding: 6px 20px;
+      border-radius: 50px;
+      font-size: 13px;
+      font-weight: 800;
+      margin-bottom: 15px;
+      letter-spacing: 1px;
     }
 
     .section-title {
-      font-size: 32px;
+      font-size: 38px;
       font-weight: 900;
-      color: var(--primary);
-      position: relative;
-      display: inline-block;
+      color: var(--dark);
+      margin-bottom: 12px;
     }
 
-    .section-title::after {
-      content: '';
-      display: block;
-      width: 60px;
-      height: 4px;
-      background: var(--accent);
-      margin: 8px auto 0;
-      border-radius: 2px;
+    .section-desc {
+      color: var(--gray);
+      font-size: 17px;
+      max-width: 550px;
+      margin: 0 auto;
     }
 
-    .section-subtitle {
-      color: var(--text-muted);
-      margin-top: 10px;
-      font-size: 16px;
-    }
-
-    /* شبكة بطاقات العقارات */
-    .grid {
+    /* ===== بطاقات العقارات ===== */
+    .properties-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+      grid-template-columns: repeat(auto-fill, minmax(360px, 1fr));
       gap: 30px;
-      margin-bottom: 80px;
     }
 
-    .card {
-      background: var(--card-bg);
-      border-radius: var(--radius);
+    .property-card {
+      background: var(--white);
+      border-radius: 20px;
       overflow: hidden;
-      box-shadow: var(--shadow);
-      border: 1px solid var(--border);
-      transition: transform 0.3s, box-shadow 0.3s;
-      display: flex;
-      flex-direction: column;
+      box-shadow: 0 10px 40px rgba(0,0,0,0.06);
+      transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+      border: 1px solid rgba(0,0,0,0.04);
     }
 
-    .card:hover {
-      transform: translateY(-8px);
-      box-shadow: var(--shadow-hover);
+    .property-card:hover {
+      transform: translateY(-10px);
+      box-shadow: var(--card-shadow);
     }
 
-    .card-img-wrap {
+    .card-image {
       position: relative;
-      height: 220px;
-      background: #e2e8f0;
+      height: 260px;
       overflow: hidden;
     }
 
-    .card-img {
+    .card-image img {
       width: 100%;
       height: 100%;
       object-fit: cover;
-      transition: transform 0.5s;
+      transition: transform 0.6s ease;
     }
 
-    .card:hover .card-img {
-      transform: scale(1.05);
+    .property-card:hover .card-image img {
+      transform: scale(1.08);
     }
 
-    .badge {
+    .card-overlay {
       position: absolute;
-      top: 15px;
-      right: 15px;
-      background: rgba(15, 23, 42, 0.85);
-      backdrop-filter: blur(4px);
+      inset: 0;
+      background: linear-gradient(to top, rgba(12,18,32,0.7) 0%, transparent 50%);
+    }
+
+    .card-badge {
+      position: absolute;
+      top: 16px;
+      right: 16px;
+      padding: 7px 18px;
+      border-radius: 50px;
+      font-size: 13px;
+      font-weight: 800;
       color: white;
-      padding: 6px 14px;
-      border-radius: 30px;
+      backdrop-filter: blur(10px);
+    }
+
+    .badge-sale { background: linear-gradient(135deg, #16a34a, #22c55e); }
+    .badge-rent { background: linear-gradient(135deg, #2563eb, #3b82f6); }
+    .badge-sold { background: linear-gradient(135deg, #dc2626, #ef4444); }
+
+    .card-photos {
+      position: absolute;
+      bottom: 16px;
+      left: 16px;
+      background: rgba(0,0,0,0.6);
+      backdrop-filter: blur(10px);
+      color: white;
+      padding: 5px 14px;
+      border-radius: 50px;
       font-size: 13px;
       font-weight: 700;
     }
 
-    .badge.sale { background: var(--success); }
-    .badge.rent { background: var(--accent); }
-    .badge.sold { background: var(--danger); }
+    .card-price-tag {
+      position: absolute;
+      bottom: 16px;
+      right: 16px;
+      background: linear-gradient(135deg, var(--gold), var(--gold-light));
+      color: var(--dark);
+      padding: 8px 18px;
+      border-radius: 12px;
+      font-size: 18px;
+      font-weight: 900;
+    }
 
-    .card-content {
+    .card-body {
       padding: 24px;
-      display: flex;
-      flex-direction: column;
-      flex-grow: 1;
     }
 
     .card-title {
       font-size: 20px;
-      font-weight: 700;
-      margin-bottom: 10px;
-      color: var(--text-main);
+      font-weight: 800;
+      color: var(--dark);
+      margin-bottom: 8px;
+      line-height: 1.4;
     }
 
     .card-location {
+      color: var(--gray);
+      font-size: 14px;
+      font-weight: 600;
+      margin-bottom: 16px;
       display: flex;
       align-items: center;
       gap: 6px;
-      color: var(--text-muted);
-      font-size: 14px;
-      margin-bottom: 14px;
     }
 
-    .card-details {
-      background: #f1f5f9;
-      padding: 10px 14px;
-      border-radius: 8px;
-      font-size: 14px;
-      color: #334155;
-      margin-bottom: 20px;
-      font-weight: 600;
-    }
-
-    .card-footer {
-      margin-top: auto;
+    .card-features {
       display: flex;
-      justify-content: space-between;
+      gap: 16px;
+      padding: 16px 0;
+      border-top: 1px solid #f1f5f9;
+      border-bottom: 1px solid #f1f5f9;
+      margin-bottom: 16px;
+      flex-wrap: wrap;
+    }
+
+    .feature-item {
+      display: flex;
       align-items: center;
-      padding-top: 16px;
-      border-top: 1px solid var(--border);
-    }
-
-    .card-price {
-      font-size: 20px;
-      font-weight: 900;
-      color: var(--primary);
-    }
-
-    .whatsapp-btn {
-      background: var(--success);
-      color: white;
-      padding: 8px 18px;
+      gap: 6px;
+      font-size: 13px;
+      font-weight: 700;
+      color: #475569;
+      background: var(--light-bg);
+      padding: 6px 12px;
       border-radius: 8px;
+    }
+
+    .card-actions {
+      display: flex;
+      gap: 10px;
+    }
+
+    .btn-whatsapp {
+      flex: 1;
+      background: linear-gradient(135deg, #16a34a, #22c55e);
+      color: white;
+      padding: 12px 20px;
+      border-radius: 12px;
+      text-decoration: none;
+      font-weight: 800;
+      font-size: 14px;
+      text-align: center;
+      transition: all 0.3s;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+    }
+
+    .btn-whatsapp:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 25px rgba(22,163,74,0.4);
+    }
+
+    .btn-details {
+      background: var(--light-bg);
+      color: var(--dark);
+      padding: 12px 20px;
+      border-radius: 12px;
       text-decoration: none;
       font-weight: 700;
       font-size: 14px;
-      transition: background 0.3s;
+      transition: all 0.3s;
+      border: 2px solid #e2e8f0;
     }
 
-    .whatsapp-btn:hover {
-      background: #15803d;
+    .btn-details:hover {
+      border-color: var(--gold);
+      color: var(--gold);
     }
 
-    /* مميزات التعامل معنا */
+    /* ===== قسم المميزات ===== */
     .features-section {
-      background: white;
-      padding: 80px 0;
-      border-top: 1px solid var(--border);
-      border-bottom: 1px solid var(--border);
+      background: linear-gradient(160deg, var(--dark) 0%, var(--dark2) 50%, var(--blue) 100%);
+      padding: 100px 30px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .features-section::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: radial-gradient(circle at 80% 20%, rgba(201,168,76,0.08) 0%, transparent 50%);
+    }
+
+    .features-inner {
+      max-width: 1300px;
+      margin: 0 auto;
+      position: relative;
+      z-index: 2;
     }
 
     .features-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
       gap: 30px;
+    }
+
+    .feature-card {
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 20px;
+      padding: 40px 30px;
       text-align: center;
+      transition: all 0.4s;
+      backdrop-filter: blur(10px);
     }
 
-    .feature-box {
-      padding: 30px 20px;
-      border-radius: var(--radius);
-      background: var(--bg);
+    .feature-card:hover {
+      background: rgba(255,255,255,0.08);
+      border-color: rgba(201,168,76,0.3);
+      transform: translateY(-5px);
     }
 
-    .feature-box h3 {
+    .feature-icon {
+      width: 70px;
+      height: 70px;
+      background: linear-gradient(135deg, rgba(201,168,76,0.15), rgba(201,168,76,0.05));
+      border-radius: 20px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 32px;
+      margin: 0 auto 20px;
+    }
+
+    .feature-card h3 {
+      color: var(--white);
       font-size: 20px;
+      font-weight: 800;
       margin-bottom: 10px;
-      color: var(--primary);
     }
 
-    .feature-box p {
-      color: var(--text-muted);
+    .feature-card p {
+      color: var(--gray);
       font-size: 15px;
+      line-height: 1.7;
     }
 
-    /* التذييل */
-    footer {
-      background: var(--primary-dark);
-      color: white;
+    /* ===== قسم التواصل ===== */
+    .contact-section {
+      background: var(--white);
+      padding: 100px 30px;
+    }
+
+    .contact-inner {
+      max-width: 800px;
+      margin: 0 auto;
       text-align: center;
-      padding: 35px 0;
-      margin-top: 0;
     }
 
-    footer p {
-      opacity: 0.8;
-      font-size: 15px;
+    .contact-card {
+      background: linear-gradient(160deg, var(--dark), var(--blue));
+      border-radius: 30px;
+      padding: 60px 40px;
+      position: relative;
+      overflow: hidden;
     }
 
+    .contact-card::before {
+      content: '';
+      position: absolute;
+      top: -50%;
+      right: -50%;
+      width: 100%;
+      height: 100%;
+      background: radial-gradient(circle, rgba(201,168,76,0.1) 0%, transparent 70%);
+    }
+
+    .contact-card h2 {
+      color: var(--white);
+      font-size: 34px;
+      font-weight: 900;
+      margin-bottom: 15px;
+      position: relative;
+    }
+
+    .contact-card p {
+      color: var(--gray);
+      font-size: 17px;
+      margin-bottom: 35px;
+      position: relative;
+    }
+
+    .contact-buttons {
+      display: flex;
+      gap: 16px;
+      justify-content: center;
+      flex-wrap: wrap;
+      position: relative;
+    }
+
+    .btn-contact-wa {
+      background: linear-gradient(135deg, #16a34a, #22c55e);
+      color: white;
+      padding: 18px 40px;
+      border-radius: 50px;
+      text-decoration: none;
+      font-weight: 800;
+      font-size: 18px;
+      transition: all 0.3s;
+      box-shadow: 0 8px 30px rgba(22,163,74,0.3);
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .btn-contact-wa:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 15px 40px rgba(22,163,74,0.5);
+    }
+
+    .btn-contact-call {
+      border: 2px solid rgba(255,255,255,0.2);
+      color: white;
+      padding: 18px 40px;
+      border-radius: 50px;
+      text-decoration: none;
+      font-weight: 700;
+      font-size: 18px;
+      transition: all 0.3s;
+    }
+
+    .btn-contact-call:hover {
+      border-color: var(--gold);
+      color: var(--gold);
+    }
+
+    /* ===== التذييل ===== */
+    .footer {
+      background: var(--dark);
+      padding: 50px 30px 30px;
+      text-align: center;
+      border-top: 1px solid rgba(255,255,255,0.05);
+    }
+
+    .footer-logo {
+      font-size: 24px;
+      font-weight: 900;
+      color: var(--white);
+      margin-bottom: 10px;
+    }
+
+    .footer p {
+      color: var(--gray);
+      font-size: 14px;
+    }
+
+    .footer-divider {
+      width: 60px;
+      height: 3px;
+      background: var(--gold);
+      margin: 20px auto;
+      border-radius: 2px;
+    }
+
+    /* ===== التجاوب ===== */
     @media (max-width: 768px) {
-      .hero h1 { font-size: 30px; }
-      .hero p { font-size: 16px; }
-      .grid { grid-template-columns: 1fr; }
+      .hero h1 { font-size: 32px; }
+      .hero-desc { font-size: 16px; }
+      .hero-stats { gap: 30px; }
+      .stat-number { font-size: 30px; }
+      .nav-links { display: none; }
+      .menu-toggle { display: block; }
+      .properties-grid { grid-template-columns: 1fr; }
+      .section-title { font-size: 28px; }
+      .search-bar { flex-direction: column; }
+      .search-bar select, .search-bar input { min-width: 100%; }
+      .contact-card { padding: 40px 20px; }
+      .contact-card h2 { font-size: 26px; }
+    }
+
+    /* ===== أنيميشن الظهور ===== */
+    .fade-up {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: all 0.6s ease;
+    }
+
+    .fade-up.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* ===== زر واتساب العائم ===== */
+    .floating-wa {
+      position: fixed;
+      bottom: 30px;
+      left: 30px;
+      width: 60px;
+      height: 60px;
+      background: linear-gradient(135deg, #16a34a, #22c55e);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 30px;
+      color: white;
+      text-decoration: none;
+      box-shadow: 0 8px 30px rgba(22,163,74,0.5);
+      z-index: 9999;
+      animation: pulse 2s infinite;
+      transition: transform 0.3s;
+    }
+
+    .floating-wa:hover { transform: scale(1.1); }
+
+    @keyframes pulse {
+      0%, 100% { box-shadow: 0 0 0 0 rgba(22,163,74,0.5); }
+      50% { box-shadow: 0 0 0 15px rgba(22,163,74,0); }
+    }
+
+    .loading-text {
+      text-align: center;
+      width: 100%;
+      padding: 60px 20px;
+      color: var(--gray);
+      font-size: 18px;
+      font-weight: 600;
     }
   </style>
 </head>
 
 <body>
 
-  <!-- رأس الصفحة -->
-  <header>
-    <div class="container nav-wrapper">
-      <a href="#" class="logo">🏢 النيل للعقارات</a>
-      <nav class="nav-links">
+  <!-- الشريط العلوي -->
+  <nav class="navbar" id="navbar">
+    <div class="nav-inner">
+      <a href="#" class="logo">
+        <div class="logo-icon">🏛</div>
+        <span class="logo-text">العقارات</span>
+      </a>
+      <div class="nav-links">
         <a href="#properties">العقارات</a>
-        <a href="#features">لماذا نحن؟</a>
-        <a href="https://wa.me/249123456789">تواصل معنا</a>
-      </nav>
+        <a href="#features">مميزاتنا</a>
+        <a href="#contact" class="nav-cta">تواصل معنا</a>
+      </div>
+      <button class="menu-toggle" onclick="document.querySelector('.nav-links').style.display = document.querySelector('.nav-links').style.display === 'flex' ? 'none' : 'flex'">☰</button>
     </div>
-  </header>
+  </nav>
 
-  <!-- القسم الترحيبي الرئيسي -->
+  <!-- القسم الرئيسي -->
   <section class="hero">
-    <div class="container">
-      <h1>عقارات موثوقة في كل أنحاء السودان</h1>
-      <p>شقق للإيجار، بيوت وفلل للبيع، وأراضٍ مميزة بأسعار حقيقية ومحدثة يومياً</p>
-      <a href="#properties" class="hero-btn">تصفح أحدث العروض</a>
+    <div class="hero-content">
+      <div class="hero-badge">✦ المنصة العقارية الأولى في السودان</div>
+      <h1 class="hero-title">اكتشف <span>عقار أحلامك</span><br>بأفضل الأسعار</h1>
+      <p class="hero-desc">نوفر لك أرقى العقارات من شقق وفلل ومنازل وأراضٍ في جميع أنحاء السودان، بأسعار حقيقية ومحدثة يومياً</p>
+      <div class="hero-buttons">
+        <a href="#properties" class="btn-gold">تصفح العقارات</a>
+        <a href="#contact" class="btn-outline">تواصل مع المستشار</a>
+      </div>
+      <div class="hero-stats">
+        <div class="stat-item">
+          <span class="stat-number">+500</span>
+          <span class="stat-label">عقار متاح</span>
+        </div>
+        <div class="stat-item">
+          <span class="stat-number">+1200</span>
+          <span class="stat-label">عميل سعيد</span>
+        </div>
+        <div class="stat-item">
+          <span class="stat-number">+15</span>
+          <span class="stat-label">سنة خبرة</span>
+        </div>
+      </div>
     </div>
   </section>
 
-  <!-- قسم العقارات المعروضة -->
-  <section id="properties" class="container">
-    <div class="section-title-wrap">
-      <h2 class="section-title">أحدث العروض العقارية</h2>
-      <p class="section-subtitle">عروض مميزة يتم تحديثها مباشرة من مكتب العقارات</p>
-    </div>
+  <!-- شريط البحث -->
+  <div class="search-bar fade-up">
+    <select>
+      <option>نوع العقار</option>
+      <option>شقة</option>
+      <option>فيلا</option>
+      <option>منزل</option>
+      <option>أرض</option>
+    </select>
+    <select>
+      <option>الحالة</option>
+      <option>للبيع</option>
+      <option>للإيجار</option>
+    </select>
+    <input type="text" placeholder="ابحث بالحي أو المدينة..." />
+    <button class="search-btn">🔍 بحث</button>
+  </div>
 
-    <!-- حاوية العقارات الديناميكية -->
-    <div id="properties-container" class="grid">
-      <!-- تحميل البيانات من Sanity أو عرض النماذج الجاهزة -->
+  <!-- قسم العقارات -->
+  <section id="properties" class="section">
+    <div class="section-header fade-up">
+      <div class="section-tag">✦ أحدث العروض</div>
+      <h2 class="section-title">عقارات مميزة بانتظارك</h2>
+      <p class="section-desc">اختر من بين مئات العقارات المعروضة بأفضل الأسعار والمواقع الاستراتيجية</p>
+    </div>
+    <div id="properties-container" class="properties-grid">
+      <p class="loading-text">⏳ جاري تحميل أحدث العروض العقارية...</p>
     </div>
   </section>
 
-  <!-- مميزات المكتب -->
+  <!-- قسم المميزات -->
   <section id="features" class="features-section">
-    <div class="container">
+    <div class="features-inner">
+      <div class="section-header fade-up">
+        <div class="section-tag" style="background:rgba(201,168,76,0.15);">✦ لماذا نحن</div>
+        <h2 class="section-title" style="color:white;">ما يميزنا عن الآخرين</h2>
+        <p class="section-desc">نقدم لك تجربة عقارية متكاملة وموثوقة</p>
+      </div>
       <div class="features-grid">
-        <div class="feature-box">
-          <h3>عقارات موثقة</h3>
-          <p>جميع عروضنا مفحوصة قانونياً ومؤكدة بأسعار الملاك الحقيقيين.</p>
+        <div class="feature-card fade-up">
+          <div class="feature-icon">🔒</div>
+          <h3>عقارات موثقة 100%</h3>
+          <p>جميع عروضنا مفحوصة قانونياً ومُتحققة من الملكية والأوراق الرسمية</p>
         </div>
-        <div class="feature-box">
-          <h3>تواصل فوري</h3>
-          <p>تواصل مباشر مع الإدارة عبر واتساب دون وسطاء أو تعقيدات.</p>
+        <div class="feature-card fade-up">
+          <div class="feature-icon">💰</div>
+          <h3>أسعار حقيقية وشفافة</h3>
+          <p>لا نضيف عمولات مخفية، السعر الذي تراه هو سعر المالك المباشر</p>
         </div>
-        <div class="feature-box">
-          <h3>تحديث يومي</h3>
-          <p>عروض متجددة يومياً للشقق السكنية والتجارية في كل الولايات.</p>
+        <div class="feature-card fade-up">
+          <div class="feature-icon">📱</div>
+          <h3>تواصل فوري ومباشر</h3>
+          <p>تواصل مع إدارة المكتب عبر واتساب في أي وقت وخلال دقائق</p>
+        </div>
+        <div class="feature-card fade-up">
+          <div class="feature-icon">🔄</div>
+          <h3>تحديث يومي للعروض</h3>
+          <p>عقارات جديدة تُضاف كل يوم، والعقارات المباعة تُحذف فوراً</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- قسم التواصل -->
+  <section id="contact" class="contact-section">
+    <div class="contact-inner fade-up">
+      <div class="contact-card">
+        <h2>هل تبحث عن عقار مميز؟</h2>
+        <p>تواصل معنا الآن وسنساعدك في إيجاد العقار المثالي لك بأفضل سعر</p>
+        <div class="contact-buttons">
+          <a href="https://wa.me/249123456789" class="btn-contact-wa" id="main-wa-btn">💬 محادثة واتساب</a>
+          <a href="tel:+249123456789" class="btn-contact-call" id="main-call-btn">📞 اتصل الآن</a>
         </div>
       </div>
     </div>
   </section>
 
   <!-- التذييل -->
-  <footer>
-    <div class="container">
-      <p>© 2026 مكتب النيل العقاري - جميع الحقوق محفوظة</p>
-    </div>
+  <footer class="footer">
+    <div class="footer-logo" id="footer-name">العقارات</div>
+    <div class="footer-divider"></div>
+    <p id="footer-copy">© 2026 جميع الحقوق محفوظة</p>
   </footer>
+
+  <!-- زر واتساب العائم -->
+  <a href="https://wa.me/249123456789" class="floating-wa" id="floating-wa" target="_blank">💬</a>
 
   <!-- الربط الذكي مع Sanity -->
   <script>
     const PROJECT_ID = "fznf3knm";
     const DATASET = "production";
-    const QUERY = encodeURIComponent('*[_type == "property"]{title, price, location, details, status, "imageUrl": image.asset->url, phone}');
-    const URL = `https://${PROJECT_ID}.api.sanity.io/v2021-10-21/data/query/${DATASET}?query=${QUERY}`;
+    const API = `https://${PROJECT_ID}.api.sanity.io/v2021-10-21/data/query/${DATASET}`;
 
-    // نماذج عقارات احترافية تعرض في حال كانت لوحة التحكم فارغة
-    const fallbackProperties = [
-      {
-        title: "فيلا فاخرة بتشطيب سوبر ديلوكس",
-        price: "120,000 $",
-        location: "الخرطوم - حي كافوري، مربع 6",
-        details: "5 غرف نوم • 4 حمامات • حديقة خاصة",
-        status: "للبيع",
-        imageUrl: "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=600&q=80",
-        phone: "249123456789"
-      },
-      {
-        title: "شقة مفروشة بالكامل ومكيفة",
-        price: "500 $ / شهرياً",
-        location: "الخرطوم - حي الرياض، شارع المشتل",
-        details: "2 غرفة نوم • هول كبير • مصعد ومولد",
-        status: "للإيجار",
-        imageUrl: "https://images.unsplash.com/photo-1522708323590-d24dbb6b0267?auto=format&fit=crop&w=600&q=80",
-        phone: "249123456789"
-      },
-      {
-        title: "منزل أرضي مميز موقع استراتيجي",
-        price: "85,000 $",
-        location: "بحري - حي المزاد قرب المواصلات",
-        details: "3 غرف • صالون • حوش واسع",
-        status: "للبيع",
-        imageUrl: "https://images.unsplash.com/photo-1568605114967-8130f3a36994?auto=format&fit=crop&w=600&q=80",
-        phone: "249123456789"
-      }
-    ];
+    let globalPhone = "249123456789";
 
-    async function loadProperties() {
-      const container = document.getElementById("properties-container");
-
+    // تحميل بيانات المكتب
+    async function loadSettings() {
       try {
-        const response = await fetch(URL);
-        const data = await response.json();
-        const properties = (data.result && data.result.length > 0) ? data.result : fallbackProperties;
+        const q = encodeURIComponent('*[_type == "siteSettings"][0]');
+        const res = await fetch(`${API}?query=${q}`);
+        const data = await res.json();
+        const s = data.result;
+        if (!s) return;
 
-        renderCards(properties, container);
-      } catch (error) {
-        console.log("استخدام النماذج الافتراضية...");
-        renderCards(fallbackProperties, container);
+        if (s.agencyName) {
+          document.querySelector('.logo-text').textContent = s.agencyName;
+          document.querySelector('.footer-logo').textContent = s.agencyName;
+          document.querySelector('#footer-copy').textContent = `© 2026 ${s.agencyName} - جميع الحقوق محفوظة`;
+          document.title = `${s.agencyName} | عقارات مميزة`;
+        }
+        if (s.heroTitle) document.querySelector('.hero-title').innerHTML = s.heroTitle;
+        if (s.heroSubtitle) document.querySelector('.hero-desc').textContent = s.heroSubtitle;
+        if (s.phone) {
+          globalPhone = s.phone;
+          document.getElementById('main-wa-btn').href = `https://wa.me/${globalPhone}`;
+          document.getElementById('main-call-btn').href = `tel:+${globalPhone}`;
+          document.getElementById('floating-wa').href = `https://wa.me/${globalPhone}`;
+        }
+      } catch (e) { console.log('استخدام البيانات الافتراضية'); }
+    }
+
+    // تحميل العقارات
+    async function loadProperties() {
+      const container = document.getElementById('properties-container');
+      try {
+        const q = encodeURIComponent('*[_type == "property"]{title, price, location, details, status, "imageUrls": images[].asset->url, phone}');
+        const res = await fetch(`${API}?query=${q}`);
+        const data = await res.json();
+        const props = data.result;
+
+        if (props && props.length > 0) {
+          renderCards(props, container);
+        } else {
+          container.innerHTML = '<p class="loading-text">لا توجد عقارات معروضة حالياً، تواصل معنا لمعرفة أحدث العروض</p>';
+        }
+      } catch (e) {
+        container.innerHTML = '<p class="loading-text">تعذر تحميل البيانات، تواصل معنا عبر واتساب</p>';
       }
     }
 
     function renderCards(list, container) {
-      container.innerHTML = "";
-
+      container.innerHTML = '';
       list.forEach(item => {
-        let badgeClass = "sale";
-        if (item.status === "للإيجار") badgeClass = "rent";
-        if (item.status === "محجوز") badgeClass = "sold";
+        let bc = 'badge-sale';
+        if (item.status === 'للإيجار') bc = 'badge-rent';
+        if (item.status === 'محجوز') bc = 'badge-sold';
 
-        const phone = item.phone || "249123456789";
-        const message = encodeURIComponent(`السلام عليكم، أود الاستفسار بخصوص العقار: ${item.title}`);
+        const img = (item.imageUrls && item.imageUrls.length > 0) ? item.imageUrls[0] : 'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=600&q=80';
+        const count = (item.imageUrls && item.imageUrls.length > 1) ? item.imageUrls.length : 0;
+        const phone = item.phone || globalPhone;
+        const msg = encodeURIComponent(`السلام عليكم، أستفسر عن: ${item.title}`);
 
-        const cardHTML = `
-          <article class="card">
-            <div class="card-img-wrap">
-              <img class="card-img" src="${item.imageUrl}" alt="${item.title}" loading="lazy">
-              <span class="badge ${badgeClass}">${item.status || "متاح"}</span>
+        container.innerHTML += `
+          <article class="property-card fade-up">
+            <div class="card-image">
+              <img src="${img}" alt="${item.title}" loading="lazy">
+              <div class="card-overlay"></div>
+              <span class="card-badge ${bc}">${item.status || 'متاح'}</span>
+              ${count > 1 ? `<span class="card-photos">📷 ${count} صور</span>` : ''}
+              <div class="card-price-tag">${item.price || 'اتصل للسعر'}</div>
             </div>
-            <div class="card-content">
-              <h3 class="card-title">${item.title}</h3>
-              <div class="card-location">📍 ${item.location}</div>
-              <div class="card-details">${item.details}</div>
-              <div class="card-footer">
-                <div class="card-price">${item.price}</div>
-                <a href="https://wa.me/${phone}?text=${message}" target="_blank" class="whatsapp-btn">استفسار واتساب</a>
+            <div class="card-body">
+              <h3 class="card-title">${item.title || 'عقار مميز'}</h3>
+              <div class="card-location">📍 ${item.location || 'السودان'}</div>
+              <div class="card-features">
+                <span class="feature-item">🏠 ${item.details || 'تفاصيل العقار'}</span>
+              </div>
+              <div class="card-actions">
+                <a href="https://wa.me/${phone}?text=${msg}" target="_blank" class="btn-whatsapp">💬 استفسار واتساب</a>
               </div>
             </div>
           </article>
         `;
-
-        container.insertAdjacentHTML("beforeend", cardHTML);
       });
+      observeAnimations();
     }
 
-    loadProperties();
+    // أنيميشن الظهور عند التمرير
+    function observeAnimations() {
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('visible');
+          }
+        });
+      }, { threshold: 0.1 });
+
+      document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
+    }
+
+    // تأثير الشريط العلوي عند التمرير
+    window.addEventListener('scroll', () => {
+      const nav = document.getElementById('navbar');
+      if (window.scrollY > 80) {
+        nav.classList.add('scrolled');
+      } else {
+        nav.classList.remove('scrolled');
+      }
+    });
+
+    // تشغيل كل شيء
+    loadSettings().then(() => loadProperties());
+    observeAnimations();
   </script>
 
 </body>
-  </html>
+</html>
