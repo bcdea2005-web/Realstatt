@@ -3,68 +3,440 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>مكتب النيل العقاري | أحدث العروض</title>
-  <meta name="description" content="عروض عقارية متجددة يومياً للبيع والإيجار في السودان" />
+  <title>النيل للعقارات | العروض العقارية المميزة في السودان</title>
+  <meta name="description" content="منصتك الأولى للبحث عن أفضل الشقق، المنازل، والفلل للبيع والإيجار في السودان" />
 
-  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700;900&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="style.css" />
+  <!-- الخط العربي الرسمي والحديث -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;900&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --primary: #0f4c81;
+      --primary-dark: #0a3258;
+      --accent: #2563eb;
+      --success: #16a34a;
+      --danger: #dc2626;
+      --bg: #f8fafc;
+      --card-bg: #ffffff;
+      --text-main: #0f172a;
+      --text-muted: #64748b;
+      --border: #e2e8f0;
+      --radius: 16px;
+      --shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+      --shadow-hover: 0 20px 40px rgba(15, 76, 129, 0.15);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: 'Cairo', sans-serif;
+    }
+
+    body {
+      background-color: var(--bg);
+      color: var(--text-main);
+      line-height: 1.6;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+
+    /* الشريط العلوي */
+    header {
+      background: rgba(255, 255, 255, 0.95);
+      backdrop-filter: blur(10px);
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .nav-wrapper {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 18px 0;
+    }
+
+    .logo {
+      font-size: 24px;
+      font-weight: 900;
+      color: var(--primary);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      text-decoration: none;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 20px;
+    }
+
+    .nav-links a {
+      text-decoration: none;
+      color: var(--text-muted);
+      font-weight: 600;
+      transition: color 0.3s;
+    }
+
+    .nav-links a:hover {
+      color: var(--primary);
+    }
+
+    /* واجهة الموقع الرئيسية */
+    .hero {
+      background: linear-gradient(135deg, var(--primary-dark) 0%, var(--primary) 50%, #1e3a8a 100%);
+      color: white;
+      padding: 90px 0 110px;
+      text-align: center;
+      position: relative;
+    }
+
+    .hero h1 {
+      font-size: 42px;
+      font-weight: 900;
+      margin-bottom: 16px;
+      line-height: 1.3;
+    }
+
+    .hero p {
+      font-size: 18px;
+      opacity: 0.9;
+      max-width: 650px;
+      margin: 0 auto 30px;
+    }
+
+    .hero-btn {
+      display: inline-block;
+      background: var(--success);
+      color: white;
+      font-size: 18px;
+      font-weight: 700;
+      padding: 14px 36px;
+      border-radius: 50px;
+      text-decoration: none;
+      box-shadow: 0 8px 20px rgba(22, 163, 74, 0.4);
+      transition: transform 0.3s, background 0.3s;
+    }
+
+    .hero-btn:hover {
+      transform: translateY(-3px);
+      background: #15803d;
+    }
+
+    /* قسم العقارات */
+    .section-title-wrap {
+      text-align: center;
+      margin: 70px 0 40px;
+    }
+
+    .section-title {
+      font-size: 32px;
+      font-weight: 900;
+      color: var(--primary);
+      position: relative;
+      display: inline-block;
+    }
+
+    .section-title::after {
+      content: '';
+      display: block;
+      width: 60px;
+      height: 4px;
+      background: var(--accent);
+      margin: 8px auto 0;
+      border-radius: 2px;
+    }
+
+    .section-subtitle {
+      color: var(--text-muted);
+      margin-top: 10px;
+      font-size: 16px;
+    }
+
+    /* شبكة بطاقات العقارات */
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+      gap: 30px;
+      margin-bottom: 80px;
+    }
+
+    .card {
+      background: var(--card-bg);
+      border-radius: var(--radius);
+      overflow: hidden;
+      box-shadow: var(--shadow);
+      border: 1px solid var(--border);
+      transition: transform 0.3s, box-shadow 0.3s;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .card:hover {
+      transform: translateY(-8px);
+      box-shadow: var(--shadow-hover);
+    }
+
+    .card-img-wrap {
+      position: relative;
+      height: 220px;
+      background: #e2e8f0;
+      overflow: hidden;
+    }
+
+    .card-img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.5s;
+    }
+
+    .card:hover .card-img {
+      transform: scale(1.05);
+    }
+
+    .badge {
+      position: absolute;
+      top: 15px;
+      right: 15px;
+      background: rgba(15, 23, 42, 0.85);
+      backdrop-filter: blur(4px);
+      color: white;
+      padding: 6px 14px;
+      border-radius: 30px;
+      font-size: 13px;
+      font-weight: 700;
+    }
+
+    .badge.sale { background: var(--success); }
+    .badge.rent { background: var(--accent); }
+    .badge.sold { background: var(--danger); }
+
+    .card-content {
+      padding: 24px;
+      display: flex;
+      flex-direction: column;
+      flex-grow: 1;
+    }
+
+    .card-title {
+      font-size: 20px;
+      font-weight: 700;
+      margin-bottom: 10px;
+      color: var(--text-main);
+    }
+
+    .card-location {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      color: var(--text-muted);
+      font-size: 14px;
+      margin-bottom: 14px;
+    }
+
+    .card-details {
+      background: #f1f5f9;
+      padding: 10px 14px;
+      border-radius: 8px;
+      font-size: 14px;
+      color: #334155;
+      margin-bottom: 20px;
+      font-weight: 600;
+    }
+
+    .card-footer {
+      margin-top: auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding-top: 16px;
+      border-top: 1px solid var(--border);
+    }
+
+    .card-price {
+      font-size: 20px;
+      font-weight: 900;
+      color: var(--primary);
+    }
+
+    .whatsapp-btn {
+      background: var(--success);
+      color: white;
+      padding: 8px 18px;
+      border-radius: 8px;
+      text-decoration: none;
+      font-weight: 700;
+      font-size: 14px;
+      transition: background 0.3s;
+    }
+
+    .whatsapp-btn:hover {
+      background: #15803d;
+    }
+
+    /* مميزات التعامل معنا */
+    .features-section {
+      background: white;
+      padding: 80px 0;
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .features-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 30px;
+      text-align: center;
+    }
+
+    .feature-box {
+      padding: 30px 20px;
+      border-radius: var(--radius);
+      background: var(--bg);
+    }
+
+    .feature-box h3 {
+      font-size: 20px;
+      margin-bottom: 10px;
+      color: var(--primary);
+    }
+
+    .feature-box p {
+      color: var(--text-muted);
+      font-size: 15px;
+    }
+
+    /* التذييل */
+    footer {
+      background: var(--primary-dark);
+      color: white;
+      text-align: center;
+      padding: 35px 0;
+      margin-top: 0;
+    }
+
+    footer p {
+      opacity: 0.8;
+      font-size: 15px;
+    }
+
+    @media (max-width: 768px) {
+      .hero h1 { font-size: 30px; }
+      .hero p { font-size: 16px; }
+      .grid { grid-template-columns: 1fr; }
+    }
+  </style>
 </head>
 
 <body>
 
-  <header class="site-header">
-    <div class="container header-inner">
-      <h1 class="logo">مكتب النيل العقاري</h1>
-      <nav class="nav">
-        <a href="#properties">العقارات المعروضة</a>
-        <a href="#contact">تواصل معنا</a>
+  <!-- رأس الصفحة -->
+  <header>
+    <div class="container nav-wrapper">
+      <a href="#" class="logo">🏢 النيل للعقارات</a>
+      <nav class="nav-links">
+        <a href="#properties">العقارات</a>
+        <a href="#features">لماذا نحن؟</a>
+        <a href="https://wa.me/249123456789">تواصل معنا</a>
       </nav>
     </div>
   </header>
 
+  <!-- القسم الترحيبي الرئيسي -->
   <section class="hero">
     <div class="container">
-      <h2>عقارات مميزة في الخرطوم وكل الولايات</h2>
-      <p>تصفح أحدث المنازل والشقق والأراضي المعروضة حالياً</p>
-      <a href="#properties" class="btn-primary">استعرض العروض</a>
+      <h1>عقارات موثوقة في كل أنحاء السودان</h1>
+      <p>شقق للإيجار، بيوت وفلل للبيع، وأراضٍ مميزة بأسعار حقيقية ومحدثة يومياً</p>
+      <a href="#properties" class="hero-btn">تصفح أحدث العروض</a>
     </div>
   </section>
 
-  <section id="properties" class="section">
-    <div class="container">
-      <h2 class="section-title">العروض المتوفرة حالياً</h2>
+  <!-- قسم العقارات المعروضة -->
+  <section id="properties" class="container">
+    <div class="section-title-wrap">
+      <h2 class="section-title">أحدث العروض العقارية</h2>
+      <p class="section-subtitle">عروض مميزة يتم تحديثها مباشرة من مكتب العقارات</p>
+    </div>
 
-      <!-- هنا سيقوم الكود الذكي بعرض العقارات تلقائياً -->
-      <div id="properties-container" class="properties-grid">
-        <p style="text-align:center; width:100%; font-size:18px;">جاري تحميل أحدث العروض العقارية...</p>
+    <!-- حاوية العقارات الديناميكية -->
+    <div id="properties-container" class="grid">
+      <!-- تحميل البيانات من Sanity أو عرض النماذج الجاهزة -->
+    </div>
+  </section>
+
+  <!-- مميزات المكتب -->
+  <section id="features" class="features-section">
+    <div class="container">
+      <div class="features-grid">
+        <div class="feature-box">
+          <h3>عقارات موثقة</h3>
+          <p>جميع عروضنا مفحوصة قانونياً ومؤكدة بأسعار الملاك الحقيقيين.</p>
+        </div>
+        <div class="feature-box">
+          <h3>تواصل فوري</h3>
+          <p>تواصل مباشر مع الإدارة عبر واتساب دون وسطاء أو تعقيدات.</p>
+        </div>
+        <div class="feature-box">
+          <h3>تحديث يومي</h3>
+          <p>عروض متجددة يومياً للشقق السكنية والتجارية في كل الولايات.</p>
+        </div>
       </div>
-
     </div>
   </section>
 
-  <section id="contact" class="section contact-section">
+  <!-- التذييل -->
+  <footer>
     <div class="container">
-      <h2 class="section-title">تواصل مع الإدارة</h2>
-      <p>هل تريد عرض عقارك معنا؟ تواصل مباشرة عبر واتساب</p>
-      <a href="https://wa.me/249123456789" class="btn-primary">مراسلة عبر واتساب</a>
-    </div>
-  </section>
-
-  <footer class="site-footer">
-    <div class="container">
-      <p>© 2026 مكتب النيل العقاري. جميع الحقوق محفوظة.</p>
+      <p>© 2026 مكتب النيل العقاري - جميع الحقوق محفوظة</p>
     </div>
   </footer>
 
-  <!-- كود الجافاسكربت الذي يسحب الأسعار والصور من اللوحة -->
+  <!-- الربط الذكي مع Sanity -->
   <script>
-    // استبدل هذا الرمز برمز مشروعك من موقع Sanity
-    const PROJECT_ID = "ضع_رمز_مشروعك_هنا";
+    const PROJECT_ID = "fznf3knm";
     const DATASET = "production";
-
-    // استعلام لجلب العقارات
     const QUERY = encodeURIComponent('*[_type == "property"]{title, price, location, details, status, "imageUrl": image.asset->url, phone}');
     const URL = `https://${PROJECT_ID}.api.sanity.io/v2021-10-21/data/query/${DATASET}?query=${QUERY}`;
+
+    // نماذج عقارات احترافية تعرض في حال كانت لوحة التحكم فارغة
+    const fallbackProperties = [
+      {
+        title: "فيلا فاخرة بتشطيب سوبر ديلوكس",
+        price: "120,000 $",
+        location: "الخرطوم - حي كافوري، مربع 6",
+        details: "5 غرف نوم • 4 حمامات • حديقة خاصة",
+        status: "للبيع",
+        imageUrl: "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=600&q=80",
+        phone: "249123456789"
+      },
+      {
+        title: "شقة مفروشة بالكامل ومكيفة",
+        price: "500 $ / شهرياً",
+        location: "الخرطوم - حي الرياض، شارع المشتل",
+        details: "2 غرفة نوم • هول كبير • مصعد ومولد",
+        status: "للإيجار",
+        imageUrl: "https://images.unsplash.com/photo-1522708323590-d24dbb6b0267?auto=format&fit=crop&w=600&q=80",
+        phone: "249123456789"
+      },
+      {
+        title: "منزل أرضي مميز موقع استراتيجي",
+        price: "85,000 $",
+        location: "بحري - حي المزاد قرب المواصلات",
+        details: "3 غرف • صالون • حوش واسع",
+        status: "للبيع",
+        imageUrl: "https://images.unsplash.com/photo-1568605114967-8130f3a36994?auto=format&fit=crop&w=600&q=80",
+        phone: "249123456789"
+      }
+    ];
 
     async function loadProperties() {
       const container = document.getElementById("properties-container");
@@ -72,49 +444,50 @@
       try {
         const response = await fetch(URL);
         const data = await response.json();
-        const properties = data.result;
+        const properties = (data.result && data.result.length > 0) ? data.result : fallbackProperties;
 
-        if (!properties || properties.length === 0) {
-          container.innerHTML = "<p style='text-align:center; width:100%;'>لا توجد عقارات معروضة حالياً.</p>";
-          return;
-        }
+        renderCards(properties, container);
+      } catch (error) {
+        console.log("استخدام النماذج الافتراضية...");
+        renderCards(fallbackProperties, container);
+      }
+    }
 
-        container.innerHTML = "";
+    function renderCards(list, container) {
+      container.innerHTML = "";
 
-        properties.forEach(item => {
-          const card = document.createElement("article");
-          card.className = "property-card";
+      list.forEach(item => {
+        let badgeClass = "sale";
+        if (item.status === "للإيجار") badgeClass = "rent";
+        if (item.status === "محجوز") badgeClass = "sold";
 
-          const imageSrc = item.imageUrl ? item.imageUrl : "https://via.placeholder.com/400x250?text=لا+توجد+صورة";
-          const isSold = item.status === "محجوز" ? "sold" : "";
-          const phone = item.phone || "249123456789";
+        const phone = item.phone || "249123456789";
+        const message = encodeURIComponent(`السلام عليكم، أود الاستفسار بخصوص العقار: ${item.title}`);
 
-          card.innerHTML = `
-            <div class="property-image" style="background-image: url('${imageSrc}'); background-size: cover; background-position: center;">
-              <span class="badge ${isSold}">${item.status || "متاح"}</span>
+        const cardHTML = `
+          <article class="card">
+            <div class="card-img-wrap">
+              <img class="card-img" src="${item.imageUrl}" alt="${item.title}" loading="lazy">
+              <span class="badge ${badgeClass}">${item.status || "متاح"}</span>
             </div>
-            <div class="property-body">
-              <h3>${item.title || "عقار بدون عنوان"}</h3>
-              <p class="location">${item.location || "الموقع غير محدد"}</p>
-              <p class="details">${item.details || ""}</p>
-              <div class="price-row">
-                <span class="price">${item.price || "اتصل لمعرفة السعر"}</span>
-                <a href="https://wa.me/${phone}?text=${encodeURIComponent('السلام عليكم، أستفسر عن: ' + item.title)}" class="btn-whatsapp" target="_blank">استفسار</a>
+            <div class="card-content">
+              <h3 class="card-title">${item.title}</h3>
+              <div class="card-location">📍 ${item.location}</div>
+              <div class="card-details">${item.details}</div>
+              <div class="card-footer">
+                <div class="card-price">${item.price}</div>
+                <a href="https://wa.me/${phone}?text=${message}" target="_blank" class="whatsapp-btn">استفسار واتساب</a>
               </div>
             </div>
-          `;
+          </article>
+        `;
 
-          container.appendChild(card);
-        });
-
-      } catch (error) {
-        console.error(error);
-        container.innerHTML = "<p style='text-align:center; width:100%; color:red;'>حدث خطأ أثناء تحميل البيانات.</p>";
-      }
+        container.insertAdjacentHTML("beforeend", cardHTML);
+      });
     }
 
     loadProperties();
   </script>
 
 </body>
-</html>
+  </html>
